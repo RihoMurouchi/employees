@@ -21,7 +21,7 @@ public class UserDAO {
 		UserBean user = null;
 
 		// プレースホルダー2つのSQL文
-		String sql = "SELECT * FROM m_user WHERE user_id = ? AND password = ?";
+		String sql = "SELECT * FROM user WHERE user_id = ? AND password = ?";
 
 		// try-with-resourcesを使用し、データベース接続確立とプリペアドステートメントを取得
 		try (Connection con = ConnectionManager.getConnection();

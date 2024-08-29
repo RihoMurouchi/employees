@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="assets/stylesheets/app.css">
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+	<%-- <%@ include file="header.jsp"%> --%>
 	<div class="main">
 		<main>
 			<h2>従業員管理システム</h2>
