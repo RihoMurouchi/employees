@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// リクエストパラメータの取得
+		
 		String id = request.getParameter("id"); // ユーザID
 		String password = request.getParameter("password"); // パスワード
 
