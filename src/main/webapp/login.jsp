@@ -10,10 +10,16 @@
 	<div class="main">
 		<main>
 			<div class="main__imageBox">
-				<img class="main__image" src="assets/images/seassist_logo.png" alt="ロゴ">
+				<!-- ヘッダー表示 -->
+				<jsp:include page="header.jsp" />
 			</div>
 			<h2>従業員管理システム</h2>
 			<br>
+			<!-- エラーメッセージを表示 -->
+			<div class="error-message">
+				<jsp:include page="err.jsp" />
+			</div>
+			<!-- ログインフォームを表示 -->
 			<form action="login" method="post">
 				<input type="text" name="id" placeholder="userId"><br> <input type="password" name="password"
 					placeholder="password"><br> <br> <input type="submit" value="ログイン">

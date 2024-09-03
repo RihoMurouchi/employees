@@ -46,15 +46,17 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// リクエストパラメータの取得
-		
+
 		String id = request.getParameter("id"); // ユーザID
 		String password = request.getParameter("password"); // パスワード
 
 		String url = "login.jsp"; // 転送用パスを格納する変数
+		String error = "予期せぬエラーが発生しました。";
 
 		UserDAO dao = new UserDAO(); // UserDAOクラスをインスタンス化
 
 		// try-catchで例外処理
+
 		try {
 			// UserDAOクラスのcheckLoginメソッドを呼び出してユーザ情報を取得
 			UserBean user = dao.checkLogin(id, password);
@@ -63,18 +65,19 @@ public class LoginServlet extends HttpServlet {
 			if (user != null) {
 				url = "menu.jsp"; // メニュー画面のパス
 
-				// セッションオブジェクト取得し、セッションスコープに値をセット
+				// セッションオブジェクトを取得し、セッションスコープに値をセット
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-
-				// idとpasswordがデータベースに登録されていなかった場合
 			} else {
+				// エラーメッセージを設定
+				request.setAttribute("errorMessage", "ログインに失敗しました。もう一度入力してください。");
 
+				// エラーページ（login.jsp）にフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+				dispatcher.forward(request, response);
 			}
-
-			// 例外キャッチ
 		} catch (ClassNotFoundException | SQLException e) {
-			url = "err.jsp"; // エラーページのパス
+			error = "予期せぬエラーが発生しました。";
 			e.printStackTrace();
 		}
 
